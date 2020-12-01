@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 665374633}
-  m_PathPosition: 1.739878
+  m_PathPosition: 1.538972
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -7036,7 +7036,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: 0.30667102, y: -0.06902754, z: 0.022305263, w: 0.9490472}
-  m_LocalPosition: {x: 7.1094255, y: 11.880984, z: -15.12}
+  m_LocalPosition: {x: 6.1605163, y: 12.511199, z: -15.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 144712530}
@@ -7089,7 +7089,7 @@ MonoBehaviour:
   currentCamera: {fileID: 1731111236}
   myBrain: {fileID: 1687258589}
   moveSpeed: 5
-  pathPosition: 1.739878
+  pathPosition: 1.538972
 --- !u!114 &1687258589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10043,25 +10043,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &2109103039525355047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109103039525355055}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63976be1194ac47c6931b989bc8c2de8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragThresholdTouch: 5
-  dragThresholdMouse: 0
-  tapTime: 0.2
-  holdTime: 0.8
-  mouseWheelSensitivity: 1
-  trackMouseButtons: 2
-  flickThreshold: 2
 --- !u!1 &2109103039525355055
 GameObject:
   m_ObjectHideFlags: 0
@@ -10076,8 +10057,6 @@ GameObject:
   - component: {fileID: 2109103039525355056}
   - component: {fileID: 2109103039525355040}
   - component: {fileID: 2109103039525355041}
-  - component: {fileID: 2109103039525355047}
-  - component: {fileID: 2109103039525355058}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -10120,24 +10099,6 @@ MonoBehaviour:
     m_Bits: 1
   selectedTile: {fileID: 0}
   currentSelectedTower: {fileID: 0}
---- !u!114 &2109103039525355058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109103039525355055}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40dddb9b7c4175a41aa2381d59f35966, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraRig: {fileID: 0}
-  nearZoomPanSpeedModifier: 0.2
-  screenPanThreshold: 40
-  mouseEdgePanSpeed: 30
-  mouseRmbPanSpeed: 15
-  zoomMultiplier: 15
 --- !u!224 &2109103040208176806
 RectTransform:
   m_ObjectHideFlags: 0
