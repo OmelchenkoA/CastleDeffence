@@ -1,0 +1,305 @@
+fileFormatVersion: 2
+guid: b7ddb608b858f5d45985676dac182e0a
+ModelImporter:
+  serializedVersion: 20101
+  internalIDToNameTable:
+  - first:
+      74: -966874729412703665
+    second: Mech|Idle
+  - first:
+      74: 8571893154444630735
+    second: Mech|Walk.001
+  - first:
+      74: -1500123258328370417
+    second: Mech|we
+  - first:
+      74: -8945691123924629249
+    second: Mech|Idle
+  - first:
+      74: 4106399916549189888
+    second: Armature|Idle.001
+  - first:
+      74: 8349542763059015795
+    second: Mech|Walk
+  - first:
+      74: -6544428077046268240
+    second: Armature|Walk.001
+  - first:
+      74: -5503221492954552158
+    second: Armature|we
+  - first:
+      74: -4318154309514362730
+    second: MechArmature|Idle
+  - first:
+      74: -8407733118578907496
+    second: MechArmature|Walk
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Head' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: MechArmature|Idle
+      takeName: MechArmature|Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MechArmature|Walk
+      takeName: MechArmature|Walk
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Mech(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mech
+      parentName: Mech(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 6.123233e-17, y: 1, z: 6.123233e-17, w: 0.00000019470718}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MechArmature
+      parentName: Mech(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Torso
+      parentName: MechArmature
+      position: {x: 9.313226e-10, y: 2.7070265, z: 3.0346342e-16}
+      rotation: {x: -0.00000009415697, y: 0.7071067, z: 0.7071068, w: 0.00000009415696}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head
+      parentName: Torso
+      position: {x: -1.1808003e-22, y: 0, z: 0.57068086}
+      rotation: {x: 0, y: 0, z: 0.0000000317865, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head_end
+      parentName: Head
+      position: {x: 0, y: 0, z: 0.9252074}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Leg1.L
+      parentName: Torso
+      position: {x: 0.8786143, y: 0.000000089840114, z: 0.25293827}
+      rotation: {x: 0.99298567, y: 0.0035051582, z: 0.01351063, w: 0.11740847}
+      scale: {x: 1, y: 0.99999946, z: 1.0000001}
+    - name: Leg2.L
+      parentName: Leg1.L
+      position: {x: -0.000000008903314, y: 0.000000011762879, z: 1.2592372}
+      rotation: {x: 0.18294571, y: 0.008715469, z: 0.007618103, w: 0.9830549}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: Foot.L
+      parentName: Leg2.L
+      position: {x: 0.00000006299384, y: -0.00000006976492, z: 1.4069731}
+      rotation: {x: 0.41402465, y: -0.019837817, z: 0.009960107, w: 0.9099951}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Foot.L_end
+      parentName: Foot.L
+      position: {x: 0, y: 0, z: 0.5917478}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Leg1.R
+      parentName: Torso
+      position: {x: -0.8786143, y: -0.000000021872154, z: 0.25293827}
+      rotation: {x: 0.993676, y: -0.007854214, z: -0.018378312, w: 0.110492885}
+      scale: {x: 1, y: 0.9999996, z: 1}
+    - name: Leg2.R
+      parentName: Leg1.R
+      position: {x: 0.00000012779918, y: 0.00000002243516, z: 1.2592372}
+      rotation: {x: 0.1740414, y: -0.0048537, z: -0.0045227055, w: 0.98471606}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Foot.R
+      parentName: Leg2.R
+      position: {x: 0.0000000064060517, y: 0.00000002727515, z: 1.4069731}
+      rotation: {x: 0.41594663, y: 0.01611882, z: -0.016588116, w: 0.90909487}
+      scale: {x: 1.0000004, y: 0.9999999, z: 1}
+    - name: Foot.R_end
+      parentName: Foot.R
+      position: {x: 0, y: 0, z: 0.5917478}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKPole.L
+      parentName: MechArmature
+      position: {x: -0.8786137, y: 1.4440262, z: -1.8738449}
+      rotation: {x: -0.00000013315805, y: 1, z: -6.123233e-17, w: 6.123235e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKPole.L_end
+      parentName: IKPole.L
+      position: {x: 0, y: 0, z: 0.6469798}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKTarget.L
+      parentName: MechArmature
+      position: {x: -0.8786143, y: 0.3729036, z: 0.51480895}
+      rotation: {x: -0.00000013315805, y: 1, z: -6.123233e-17, w: 6.123235e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKTarget.L_end
+      parentName: IKTarget.L
+      position: {x: 0, y: 0, z: 0.6613571}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKPole.R
+      parentName: MechArmature
+      position: {x: 0.8786149, y: 1.4440262, z: -1.8738444}
+      rotation: {x: 0.00000013315805, y: 1, z: -6.123235e-17, w: 6.123233e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKPole.R_end
+      parentName: IKPole.R
+      position: {x: 0, y: 0, z: 0.6469798}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKTarget.R
+      parentName: MechArmature
+      position: {x: 0.8786143, y: 0.36244082, z: -0.011810139}
+      rotation: {x: 0.00000013315805, y: 1, z: -6.123235e-17, w: 6.123233e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: IKTarget.R_end
+      parentName: IKTarget.R
+      position: {x: 0, y: 0, z: 0.66135705}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Gun
+      parentName: Mech(Clone)
+      position: {x: -0.0016107447, y: 2.4859056, z: 0.6706518}
+      rotation: {x: 6.123233e-17, y: 1, z: 6.123233e-17, w: 0.00000019470718}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
