@@ -39,10 +39,21 @@ public class BuildManager : MonoBehaviour
 		UiManager.instance.SelectTower(deffenceTower);
 	}
 
+	public void DestroyTower()
+	{
+		selectedTower = UiManager.instance.currentSelectedTower;
+		UiManager.instance.SelectTile(selectedTower.PlacementTile);
+		CurrencyManager.instance.AddCurrency(selectedTower.destroyCost);
+		
+		selectedTower.Destroy();
+	}
+
+
 	public void UpgradeTower()
 	{
 		selectedTower = UiManager.instance.currentSelectedTower;
 		selectedTower.UpgradeTower();
+		UiManager.instance.UpdateTowerMenu(selectedTower.upgradeCost, selectedTower.destroyCost);
 	}
 
 

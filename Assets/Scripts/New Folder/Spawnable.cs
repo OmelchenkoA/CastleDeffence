@@ -90,7 +90,7 @@ public class Spawnable : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(adjTargetPos - projectileSpawnPoints[_nextGunToShoot].position);
 
         Projectile prj = Instantiate<GameObject>(projectilePrefab, projectileSpawnPoints[_nextGunToShoot].position, rot).GetComponent<Projectile>();
-        prj.target = target;
+        prj.SetTarget(target);
         prj.damage = damage;
         _nextGunToShoot = (_nextGunToShoot + 1) % projectileSpawnPoints.Length;
 
@@ -137,11 +137,13 @@ public class Spawnable : MonoBehaviour
         state = States.Dead;
         //audioSource.pitch = Random.Range(.9f, 1.1f);
         //audioSource.PlayOneShot(dieAudioClip, 1f);
-        
-		OnDie?.Invoke(this);
+        if(target != null)
+            target.OnDie -= TargetIsDead;
+        OnDie?.Invoke(this);
 	}
     public virtual void Stop()
     {
         state = States.Idle;
     }
+
 }

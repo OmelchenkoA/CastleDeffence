@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,27 +13,49 @@ public class GameManager : MonoBehaviour
 	public EnemySpawner enemySpawner;
 	public BuildManager buildManager;
 
+	public event Action OnGameStarted;
+	public event Action OnGoToMainMenu;
+	public event Action<int> OnLevelChanged;
+	public event Action<int> OnGameOver;
 
-    public TowerData[] towerConfigurations;
+	public TowerData[] towerConfigurations;
 
 	[HideInInspector] public List<Spawnable> enemiesCurrentWave; 
 	[HideInInspector] public List<Spawnable> castles; 
-	[HideInInspector] public List<Spawnable> allSpawnable; 
+	[HideInInspector] public List<Spawnable> allSpawnable;
 
-
+	private GameStates gameState;
+	private int currentLevel;
+	private enum GameStates
+	{ 
+		Menu, 
+		Play, 
+		Pause, 
+		GameOver 
+	};
 
 	private void Awake()
 	{
-        if (instance == null)
-            instance = this;
-		enemiesCurrentWave = new List<Spawnable>();
+		gameState = GameStates.Menu;
 
+		if (instance == null)
+            instance = this;
+
+		enemiesCurrentWave = new List<Spawnable>();
 		castles = new List<Spawnable>();
 		allSpawnable = new List<Spawnable>();
 
 		castles.Add(Castle);
-		enemySpawner.OnUnitSpawned += newUnitSpawned;
+		Castle.OnDie += OnCastleDie;
+		enemySpawner.OnUnitSpawned += OnNewUnitSpawned;
 		buildManager.OnTowerBuild += OnTowerBuild;
+	}
+
+	private void OnCastleDie(Spawnable arg0)
+	{
+		gameState = GameStates.GameOver;
+		StopAll();
+		OnGameOver?.Invoke(currentLevel);
 	}
 
 	private void OnTowerBuild(Spawnable tower)
@@ -40,7 +63,7 @@ public class GameManager : MonoBehaviour
 		allSpawnable.Add(tower);
 	}
 
-	private void newUnitSpawned(Spawnable unit)
+	private void OnNewUnitSpawned(Spawnable unit)
 	{
 		enemiesCurrentWave.Add(unit);
 		allSpawnable.Add(unit);
@@ -58,16 +81,55 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
 	{
-		UpdateWaves();
-		UpdateSpawnables();
+		switch (gameState)
+		{
+			case GameStates.Menu:
+				ResetGameField();
+				break;
+			case GameStates.Play:
+				UpdateWaves();
+				UpdateSpawnables();
+				break;
+			case GameStates.Pause:
+				break;
+			case GameStates.GameOver:
+				break;
+		}
+
+		
+	}
+	public void StartGame()
+	{
+		gameState = GameStates.Play;
+		currentLevel = 0;
+		OnGameStarted?.Invoke();
 	}
 
+	public void GoToMainMenu()
+	{
+		gameState = GameStates.Menu;
+		ResetGameField();
+		OnGoToMainMenu?.Invoke();
+	}
 	private void UpdateWaves()
 	{
 		if (enemiesCurrentWave.Count == 0)
-			enemySpawner.NextWave();
+		{
+			enemySpawner.StartWave(++currentLevel);
+			OnLevelChanged?.Invoke(currentLevel);
+		}
 	}
-
+	private void StopAll()
+	{
+		allSpawnable.ForEach(x => x.state = Spawnable.States.Idle);
+	}
+	private void ResetGameField()
+	{
+		CurrencyManager.instance.SetCurrency(StartCoins);
+		castles.ForEach(c=>((Castle)c).Restore());
+		allSpawnable.ForEach(s => s.state = Spawnable.States.Dead);
+		UpdateSpawnables();
+	}
 	private void UpdateSpawnables()
 	{
 

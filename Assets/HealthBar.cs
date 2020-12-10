@@ -10,12 +10,10 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealth(float normalizedHealth)
     {
-        slider.value = normalizedHealth;
+		if(slider == null)
+			slider = GetComponentInChildren<Slider>();
+		slider.value = normalizedHealth;
     }
-	protected virtual void Awake()
-	{
-		slider = GetComponentInChildren<Slider>();
-	}
 
 	private void LateUpdate()
 	{

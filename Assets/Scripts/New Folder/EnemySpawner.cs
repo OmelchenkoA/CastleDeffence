@@ -14,25 +14,15 @@ public class EnemySpawner : MonoBehaviour
 
 	public UnityAction<Spawnable> OnUnitSpawned;
 
-	public int waveNumber = 1;
-	public int enemiesInWave = 5;
-	public float delayWave = 5;
-	private float countdown;
-
-
-	private void Awake()
-	{
-
-	}
+	public int waveNumber;
+	public int enemiesInWave;
 
 	private void SpawnUnit(Node node)
 	{
 		foreach (UnitData uData in unitsToSpawn)
 		{
 			Vector3 spawnPosition = node.GetRandomPointInNodeArea();	
-
 			Quaternion rot = Quaternion.Euler(0f, -90f, 0f); ;
-			//Quaternion rot = Quaternion.identity;
 
 			GameObject prefabToSpawn = uData.prefab;
 			GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, rot);
@@ -41,15 +31,10 @@ public class EnemySpawner : MonoBehaviour
 			unit.Init(uData);
 
 			OnUnitSpawned?.Invoke(unit);
-			
-			//unit.OnDealDamage += OnSpawnableDealtDamage;
-			//unit.OnProjectileFired += OnProjectileFired;
-			//AddSpawnableToList(unit); //add the Unit to the appropriate list
-			//UIManager.AddHealthUI(unit);
 		}
 	}
 
-	IEnumerator SpawnWave()
+	IEnumerator SpawnWave(int waveNumber)
 	{
 		for (int i = 0; i < enemiesInWave * waveNumber; i++)
 		{
@@ -58,25 +43,10 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-	private void Spawning()
+	internal void StartWave(int waveNumber)
 	{
-		if (countdown <= 0f)
-		{
-			StartCoroutine(SpawnWave());
-			waveNumber++;
-			countdown = delayWave;
-		}
-		countdown -= Time.deltaTime;
+		StartCoroutine(SpawnWave(waveNumber));
 	}
 
-	internal void NextWave()
-	{
-		waveNumber++;
-		StartCoroutine(SpawnWave());
-	}
 
-	private void Update()
-	{
-		//Spawning();
-	}
 }

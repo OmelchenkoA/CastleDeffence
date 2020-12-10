@@ -7,7 +7,8 @@ using Cinemachine;
 public class CameraMovement : MonoBehaviour
 {
 
-    public CinemachineVirtualCamera currentCamera;
+    public CinemachineVirtualCamera mainCamera;
+    public CinemachineVirtualCamera buildCamera;
     public CinemachineBrain myBrain;
     public float moveSpeed;
     public float pathPosition = 0.0f;
@@ -34,7 +35,7 @@ public class CameraMovement : MonoBehaviour
 
         myBrain.enabled = true;
 
-        cinemachineTrackedDolly = currentCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+        cinemachineTrackedDolly = mainCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
         pathLength = cinemachineTrackedDolly.m_Path.MaxPos;
         pathPosition = cinemachineTrackedDolly.m_PathPosition;
     }
@@ -55,4 +56,10 @@ public class CameraMovement : MonoBehaviour
         pathPosition = Mathf.Clamp(pathPosition + movementInput.x * moveSpeed * Time.deltaTime,0, pathLength);
         cinemachineTrackedDolly.m_PathPosition = pathPosition;
     }
+
+    public void SwitchCamera()
+	{
+        mainCamera.enabled = !mainCamera.enabled;
+        buildCamera.enabled = !buildCamera.enabled;
+	}
 }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Turret_L3
   m_EditorClassIdentifier: 
   prefab: {fileID: 3000230236018417443, guid: 00da27f8d1d93d74c8d6c056582ac23f, type: 3}
-  attackRatio: 0.05
+  attackRatio: 0.2
   damagePerAttack: 2
   attackRange: 30
   hitPoints: 10
   speed: 5
   upgradeCost: 80
+  destroyCost: 40

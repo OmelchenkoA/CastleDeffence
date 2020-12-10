@@ -13,5 +13,6 @@ public class TowerLevelData : ScriptableObject
     public float hitPoints = 10f;
     public float speed = 5f; //movement speed
     public int upgradeCost = 5; 
+    public int destroyCost = 5; 
 
 }

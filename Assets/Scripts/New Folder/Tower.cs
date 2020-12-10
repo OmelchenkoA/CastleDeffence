@@ -7,6 +7,8 @@ public class Tower : Spawnable
     private Animator animator;
 
     public TowerData towerData;
+    public int upgradeCost;
+    public int destroyCost;
 
     public int currentLevel;
     private TowerLevel towerLevel;
@@ -49,12 +51,15 @@ public class Tower : Spawnable
                 return;
             }
 
+            currentLevel = level;
+
             health = towerData.towerLevels[currentLevel].hitPoints;
             attackRange = towerData.towerLevels[currentLevel].attackRange;
             attackRatio = towerData.towerLevels[currentLevel].attackRatio;
             damage = towerData.towerLevels[currentLevel].damagePerAttack;
+            destroyCost = towerData.towerLevels[currentLevel].destroyCost;
+            upgradeCost = currentLevel + 1 >= towerData.towerLevels.Length ? 0 : towerData.towerLevels[currentLevel + 1].upgradeCost;
 
-            currentLevel = level;
             if (towerLevel != null)
                 GameObject.Destroy(towerLevel.gameObject);
             towerLevel = Instantiate(towerData.towerLevels[currentLevel].prefab, transform).GetComponent<TowerLevel>();
@@ -72,10 +77,13 @@ public class Tower : Spawnable
         SetLevel(currentLevel + 1);
     }
 
+	public void Destroy()
+	{
+        Die();
+	}
 
 
-
-    public override void Seek()
+	public override void Seek()
     {
         if (target == null)
             return;
@@ -85,19 +93,14 @@ public class Tower : Spawnable
  
     }
 
-    //Unit has gotten to its target. This function puts it in "attack mode", but doesn't delive any damage (see DealBlow)
     public override void StartAttack()
     {
         base.StartAttack();
     }
 
-    //Starts the attack animation, and is repeated according to the Unit's attackRatio
     public override void DealBlow()
     {
         base.DealBlow();
-
-        //animator.SetTrigger("Attack");
-        //turn towards the target
         FireProjectile();
     }
 
