@@ -14,11 +14,13 @@ public class UiManager : MonoBehaviour
     public GameObject towerMenuGO;
     public GameObject currencyMenu;
     public GameObject levelPanel;
+    public GameObject LeftPanel;
 
 	[Header("Main menu")]
 	public GameObject MenuPanel;
 	public GameObject MainMenuPanel;
 	public GameObject GameplayPanel;
+	public GameObject UpgradesPanel;
 	public GameObject StartButton;
 	public GameObject UpgradesButton;
 
@@ -39,11 +41,14 @@ public class UiManager : MonoBehaviour
 	private Text coinsText;
 	private Text levelText;
 
+	private UiStates currentUiState;
+
 	private enum UiStates
 	{
 		MainMenu,
 		Play,
 		Pause,
+		UpgradeMenu,
 		GameOver
 	};
 
@@ -61,7 +66,7 @@ public class UiManager : MonoBehaviour
 		GameManager.instance.OnGameStarted += OnGameStarted;
 		GameManager.instance.OnGoToMainMenu += OnGoToMainMenu;
 		GameManager.instance.OnGameOver += OnGameOver;
-		GameManager.instance.OnLevelChanged += OnLevelChanged;
+		GameManager.instance.OnLevelStarted += OnLevelStarted;
 
 		inputActions = new InputControls();
 		inputActions.UI.MouseClick.performed += _ => MouseClick_performed();
@@ -72,12 +77,13 @@ public class UiManager : MonoBehaviour
 
 	private void OnGoToMainMenu()
 	{
-		SwitchUiState(UiStates.MainMenu);
+		GoToMainMenu();
 		ClearSelection();
 	}
 
 	private void SwitchUiState(UiStates uiState)
 	{
+		currentUiState = uiState;
 		switch (uiState)
 		{
 			case UiStates.MainMenu:
@@ -85,12 +91,14 @@ public class UiManager : MonoBehaviour
 				MainMenuPanel.SetActive(true);
 				GameOverPanel.SetActive(false);
 				GameplayPanel.SetActive(false);
+				UpgradesPanel.SetActive(false);
 				break;
 			case UiStates.Play:
 				MenuPanel.SetActive(false);
 				MainMenuPanel.SetActive(true);
 				GameOverPanel.SetActive(false);
 				GameplayPanel.SetActive(true);
+				LeftPanel.SetActive(true);
 				break;
 			case UiStates.Pause:
 				break;
@@ -99,6 +107,13 @@ public class UiManager : MonoBehaviour
 				MainMenuPanel.SetActive(false);
 				GameOverPanel.SetActive(true);
 				GameplayPanel.SetActive(false);
+				break;
+			case UiStates.UpgradeMenu:
+				MenuPanel.SetActive(true);
+				MainMenuPanel.SetActive(false);
+				GameplayPanel.SetActive(true);
+				UpgradesPanel.SetActive(true);
+				LeftPanel.SetActive(false);
 				break;
 		}
 	}
@@ -116,49 +131,52 @@ public class UiManager : MonoBehaviour
 
 	private void MouseClick_performed()
 	{
-
-		Vector2 mousePos = inputActions.UI.MousePosition.ReadValue<Vector2>();
-		RaycastHit output;
-		Ray ray = m_Camera.ScreenPointToRay(mousePos);
-		bool hasHit = Physics.Raycast(ray, out output, float.MaxValue, towerSelectionLayer);
-		if (!hasHit)
+		if(currentUiState == UiStates.Play)
 		{
-			return;
-		}
+			Vector2 mousePos = inputActions.UI.MousePosition.ReadValue<Vector2>();
+			RaycastHit output;
+			Ray ray = m_Camera.ScreenPointToRay(mousePos);
+			bool hasHit = Physics.Raycast(ray, out output, float.MaxValue, towerSelectionLayer);
+			if (!hasHit)
+			{
+				return;
+			}
 
-		Tower tower = output.collider.GetComponent<TowerLevel>()?.ParentTower;
-		if (tower != null)
-		{
-			SelectTower(tower);
-			return;
-		}
+			Tower tower = output.collider.GetComponent<TowerLevel>()?.ParentTower;
+			if (tower != null)
+			{
+				SelectTower(tower);
+				return;
+			}
 
-		PlacementTile tile = output.collider.GetComponent<PlacementTile>();
-		if (tile != null)
-		{
-			SelectTile(tile);
+			PlacementTile tile = output.collider.GetComponent<PlacementTile>();
+			if (tile != null)
+			{
+				SelectTile(tile);
+			}
 		}
+		
 	}
 
 	private void InitButtons()
 	{
 		foreach (TowerData towerData in GameManager.instance.towerConfigurations)
 		{
-			Button button = Instantiate(newTowerButton);
-			button.transform.SetParent(newTowerMenu.transform);
+			Button button = Instantiate(newTowerButton, newTowerMenu.transform);
 			button.GetComponentInChildren<Text>().text = towerData.name;
 			button.onClick.AddListener(() => {BuildManager.instance.BuildTower(towerData); });
 		}
 	}
 
 
+
 	private void UI_OnCurrencyChanged(int currentCoins)
 	{
 		coinsText.text = "Coins: " + currentCoins;
 	}
-	private void OnLevelChanged(int level)
+	private void OnLevelStarted(int level, int maxLevel)
 	{
-		levelText.text = "Level: " + level;
+		levelText.text = $"Level: {level}   Max Level: {maxLevel}";
 	}
 	private void OnGameOver(int level)
 	{
@@ -172,7 +190,15 @@ public class UiManager : MonoBehaviour
 	}
 
 
+	public void GoToUpgradeMenu()
+	{
+		SwitchUiState(UiStates.UpgradeMenu);
+	}
 
+	public void GoToMainMenu()
+	{
+		SwitchUiState(UiStates.MainMenu);
+	}
 	public void SelectTile(PlacementTile tile)
 	{
 		ClearSelection();

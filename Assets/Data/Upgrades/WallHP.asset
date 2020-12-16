@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932327ee65cb3e24a9eca40fe2500c12, type: 3}
+  m_Name: WallHP
+  m_EditorClassIdentifier: 
+  type: 1
+  upgradeName: Castle Strenght
+  levels:
+  - cost: 100
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 200
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 300
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 400
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 500
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 600
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 700
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 800
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 900
+    value: 100
+    levelPoint: {fileID: 0}
+  - cost: 1000
+    value: 100
+    levelPoint: {fileID: 0}

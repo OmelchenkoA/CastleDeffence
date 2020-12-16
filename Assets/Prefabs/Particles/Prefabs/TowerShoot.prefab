@@ -4773,7 +4773,6 @@ GameObject:
   - component: {fileID: 522135840432579462}
   - component: {fileID: 5813606547062082079}
   - component: {fileID: 4446535728456853324}
-  - component: {fileID: -9003193622551507003}
   m_Layer: 0
   m_Name: TowerShoot
   m_TagString: Untagged
@@ -9512,19 +9511,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &-9003193622551507003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5312715208352064162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d007c1fe5e41c1888e4af3392f8676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialPoolCapacity: 10
 --- !u!1 &6785436071083384346
 GameObject:
   m_ObjectHideFlags: 0

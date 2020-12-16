@@ -16,13 +16,14 @@ public class PlacementTile : MonoBehaviour
     private Color startColor;
 
     private Renderer rend;
+    private bool selected;
     private bool active;
     void Start()
     {
         rend = GetComponent<Renderer>();
-        
-        startColor = rend.material.color;
         active = false;
+        startColor = rend.material.color;
+        selected = false;
     }
 
 	private void OnMouseEnter()
@@ -32,7 +33,7 @@ public class PlacementTile : MonoBehaviour
 
 	private void OnMouseExit()
 	{
-        rend.material.color = active ? selectColor : startColor;
+        rend.material.color = selected ? selectColor : startColor;
     }
 
 	private void OnMouseUpAsButton()
@@ -44,14 +45,14 @@ public class PlacementTile : MonoBehaviour
 
 	public void Deselect()
 	{
-        active = false;
+        selected = false;
         rend.material.color = startColor;
         SelectionVFX.SetActive(false);
 
     }
     public void Select()
     {
-        active = true;
+        selected = true;
         rend.material.color = selectColor;
         SelectionVFX.SetActive(true);
     }
@@ -60,4 +61,10 @@ public class PlacementTile : MonoBehaviour
 	{
         SelectionVFX.SetActive(true);
     }
+
+    public void SetActive(bool anable)
+	{
+        active = anable;
+        gameObject.SetActive(active);
+	}
 }

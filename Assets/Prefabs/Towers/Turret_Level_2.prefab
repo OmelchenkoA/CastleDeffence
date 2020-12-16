@@ -457,6 +457,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5394653656155169740}
     m_Modifications:
     - target: {fileID: 522135840432579462, guid: 133663030961c084993d0cb064e34459, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 522135840432579462, guid: 133663030961c084993d0cb064e34459, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -469,6 +473,10 @@ PrefabInstance:
       value: 2.392
       objectReference: {fileID: 0}
     - target: {fileID: 522135840432579462, guid: 133663030961c084993d0cb064e34459, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 522135840432579462, guid: 133663030961c084993d0cb064e34459, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -479,14 +487,6 @@ PrefabInstance:
     - target: {fileID: 522135840432579462, guid: 133663030961c084993d0cb064e34459, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 522135840432579462, guid: 133663030961c084993d0cb064e34459, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 522135840432579462, guid: 133663030961c084993d0cb064e34459, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 522135840432579462, guid: 133663030961c084993d0cb064e34459, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -504,7 +504,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerShoot
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -9003193622551507003, guid: 133663030961c084993d0cb064e34459, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 133663030961c084993d0cb064e34459, type: 3}
 --- !u!4 &4618127464319340749 stripped
 Transform:

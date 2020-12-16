@@ -17,7 +17,8 @@ MonoBehaviour:
   attackType: 1
   targetType: 0
   attackRatio: 1
-  damagePerAttack: 10
+  damagePerAttack: 5
   attackRange: 20
-  hitPoints: 30
+  hitPoints: 20
   speed: 5
+  dropCoins: 10
