@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Assets.Data.ScriptableObjects;
+using Assets.Scripts.CastleDefence.Managers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,16 +29,16 @@ public class Unit : Spawnable
     {
 		state = States.Idle;
 
-        faction = uData.faction;
-        health = uData.hitPoints;
-        maxHealth = uData.hitPoints;
-        targetType = uData.targetType;
-        attackRange = uData.attackRange;
-        attackRatio = uData.attackRatio;
-        speed = uData.speed;
-        damage = uData.damagePerAttack;
+        faction = uData.Faction;
+        health = uData.HitPoints;
+        maxHealth = uData.HitPoints;
+        targetType = uData.TargetType;
+        attackRange = uData.AttackRange;
+        attackRatio = uData.AttackRatio;
+        speed = uData.Speed;
+        damage = uData.DamagePerAttack;
 
-        dropCoins = uData.dropCoins;
+        dropCoins = uData.DropCoins;
 
         navMeshAgent.speed = speed;
         navMeshAgent.enabled = true;

@@ -1,20 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewUnit", menuName = "Configs/Unit Data")]
-public class UnitData : ScriptableObject
+namespace Assets.Data.ScriptableObjects
 {
-    public GameObject prefab;
+	[CreateAssetMenu(fileName = "NewUnit", menuName = "Configs/Unit Data")]
+	public class UnitData : ScriptableObject
+	{
+		[SerializeField] private GameObject prefab;
 
-    public Spawnable.Faction faction = Spawnable.Faction.None;
-    public Spawnable.AttackType attackType = Spawnable.AttackType.Ranged;
-    public Spawnable.TargetType targetType = Spawnable.TargetType.All;
-    public float attackRatio = 1f; //time between attacks
-    public float damagePerAttack = 2f; 
-    public float attackRange = 1f;
-    public float hitPoints = 10f;
-    public float speed = 5f; //movement speed
-    public float dropCoins = 5f;
+		[SerializeField] private Spawnable.Faction faction = Spawnable.Faction.None;
+		[SerializeField] private Spawnable.AttackType attackType = Spawnable.AttackType.Ranged;
+		[SerializeField] private Spawnable.TargetType targetType = Spawnable.TargetType.All;
+		[SerializeField] private float attackRatio = 1f; //time between attacks
+		[SerializeField] private float damagePerAttack = 2f;
+		[SerializeField] private float attackRange = 1f;
+		[SerializeField] private float hitPoints = 10f;
+		[SerializeField] private float speed = 5f;
+		[SerializeField] private float dropCoins = 5f;
 
+		public GameObject Prefab => prefab;
+		public Spawnable.Faction Faction => faction;
+		public Spawnable.AttackType AttackType => attackType;
+		public Spawnable.TargetType TargetType => targetType;
+		public float AttackRatio => attackRatio;
+		public float DamagePerAttack => damagePerAttack;
+		public float AttackRange => attackRange;
+		public float HitPoints => hitPoints;
+		public float Speed => speed;
+		public float DropCoins => dropCoins;
+	}
 }

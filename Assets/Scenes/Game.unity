@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 665374633}
-  m_PathPosition: 1.714638
+  m_PathPosition: 1.984054
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -11677,8 +11677,6 @@ MonoBehaviour:
   buildManager: {fileID: 2109103039525355056}
   placementTilesHolder: {fileID: 35403620}
   upgradeSystem: {fileID: 1194115913}
-  towerConfigurations:
-  - {fileID: 11400000, guid: ac49ec31800f4134fbf893d2133d566f, type: 2}
   gameData:
     activeTiles: 3
     gatesHp: 1000
@@ -11686,7 +11684,9 @@ MonoBehaviour:
     maxWave: 0
     coins: 200
     upgradeSaveDatas: []
+    towerSaveDatas: []
   enemiesCurrentWave: []
+  towers: []
   castles: []
   allSpawnable: []
 --- !u!114 &1194115913
@@ -16159,7 +16159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: 0.3066711, y: -0.06902756, z: 0.022305274, w: 0.94904715}
-  m_LocalPosition: {x: 16.67944, y: 48.009293, z: -43.3}
+  m_LocalPosition: {x: 18.260948, y: 47.289913, z: -43.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1101115359}
@@ -16212,7 +16212,7 @@ MonoBehaviour:
   buildCamera: {fileID: 406823458}
   myBrain: {fileID: 1687258589}
   moveSpeed: 5
-  pathPosition: 1.714638
+  pathPosition: 1.984054
 --- !u!114 &1687258589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21750,7 +21750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2109103039313429208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21924,7 +21924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cb77eebcb869c45a647b529de37eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementTiles: []
+  towerConfigurations:
+  - {fileID: 11400000, guid: ac49ec31800f4134fbf893d2133d566f, type: 2}
+  placementTilesholder: {fileID: 35403620}
 --- !u!114 &2109103039525355057
 MonoBehaviour:
   m_ObjectHideFlags: 0

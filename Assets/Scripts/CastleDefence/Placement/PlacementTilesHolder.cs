@@ -1,46 +1,50 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Linq;
-using System;
 using Assets.Scripts.Upgrades;
 
-public class PlacementTilesHolder : MonoBehaviour
+namespace Assets.Scripts.CastleDefence.Placement
 {
-    public PlacementTile[] placementTiles;
-	
-	public int CountActiveTiles()
+	public class PlacementTilesHolder : MonoBehaviour
 	{
-		return placementTiles.Where(t => t.isActiveAndEnabled == true).Count();
-	}
+		public PlacementTile[] placementTiles;
 
-	private void Awake()
-	{
-		UpgradeSystem.OnUpgrade += PlacementTilesHolder_OnUpgrade;
-	}
-
-	private void PlacementTilesHolder_OnUpgrade(Upgrade obj)
-	{
-		if (obj.type == UpgradeType.Tile)
-			EnableNextTile();
-	}
-
-	private void EnableNextTile()
-	{
-		placementTiles.Where(t => t.isActiveAndEnabled == false).FirstOrDefault().SetActive(true);
-	}
-
-	public void Init(int activeTilesOnStart)
-	{
-		for (int i = 0; i < placementTiles.Length; i++)
+		public int CountActiveTiles()
 		{
-			if(i < activeTilesOnStart)
-				placementTiles[i].SetActive(true);
-			else
-				placementTiles[i].SetActive(false);
+			return placementTiles.Where(t => t.isActiveAndEnabled == true).Count();
 		}
+
+		private void Awake()
+		{
+			UpgradeSystem.OnUpgrade += PlacementTilesHolder_OnUpgrade;
+		}
+
+		private void PlacementTilesHolder_OnUpgrade(Upgrade obj)
+		{
+			if (obj.type == UpgradeType.Tile)
+				EnableNextTile();
+		}
+
+		private void EnableNextTile()
+		{
+			placementTiles.Where(t => t.isActiveAndEnabled == false).FirstOrDefault().SetActive(true);
+		}
+
+		public void Init(int activeTilesOnStart)
+		{
+			for (int i = 0; i < placementTiles.Length; i++)
+			{
+				placementTiles[i].Id = i;
+				if (i < activeTilesOnStart)
+					placementTiles[i].SetActive(true);
+				else
+					placementTiles[i].SetActive(false);
+			}
+		}
+
+		public PlacementTile GetPlacementTile(int id)
+		{
+			return placementTiles.Where(t => t.Id.Equals(id)).FirstOrDefault();
+		}
+
 	}
-
-
-
 }

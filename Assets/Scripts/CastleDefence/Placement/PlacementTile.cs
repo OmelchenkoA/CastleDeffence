@@ -1,70 +1,71 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class PlacementTile : MonoBehaviour
+namespace Assets.Scripts.CastleDefence.Placement
 {
-    // Start is called before the first frame update
-    public GameObject SelectionVFX;
-    public Color hoverColor;
-    public Color selectColor;
-    public static event EventHandler TileClicked;
-    private GameObject turret;
-    
-    private Color startColor;
-
-    private Renderer rend;
-    private bool selected;
-    private bool active;
-    void Start()
-    {
-        rend = GetComponent<Renderer>();
-        active = false;
-        startColor = rend.material.color;
-        selected = false;
-    }
-
-	private void OnMouseEnter()
+	public class PlacementTile : MonoBehaviour
 	{
-        rend.material.color = hoverColor;
-	}
+		public GameObject SelectionVFX;
+		public Color hoverColor;
+		public Color selectColor;
+		public static event EventHandler TileClicked;
+		private GameObject turret;
 
-	private void OnMouseExit()
-	{
-        rend.material.color = selected ? selectColor : startColor;
-    }
+		private Color startColor;
 
-	private void OnMouseUpAsButton()
-	{
-        TileClicked?.Invoke(this, EventArgs.Empty);    
-    }
-    
-	
+		private Renderer rend;
+		private bool selected;
+		private bool active;
+		private int id;
 
-	public void Deselect()
-	{
-        selected = false;
-        rend.material.color = startColor;
-        SelectionVFX.SetActive(false);
+		public int Id { get => id; set => id = value; }
 
-    }
-    public void Select()
-    {
-        selected = true;
-        rend.material.color = selectColor;
-        SelectionVFX.SetActive(true);
-    }
+		void Start()
+		{
+			rend = GetComponent<Renderer>();
+			active = false;
+			startColor = rend.material.color;
+			selected = false;
+		}
 
-    public void AnableSelectionView()
-	{
-        SelectionVFX.SetActive(true);
-    }
+		private void OnMouseEnter()
+		{
+			rend.material.color = hoverColor;
+		}
 
-    public void SetActive(bool anable)
-	{
-        active = anable;
-        gameObject.SetActive(active);
+		private void OnMouseExit()
+		{
+			rend.material.color = selected ? selectColor : startColor;
+		}
+
+		private void OnMouseUpAsButton()
+		{
+			TileClicked?.Invoke(this, EventArgs.Empty);
+		}
+
+		public void Deselect()
+		{
+			selected = false;
+			rend.material.color = startColor;
+			SelectionVFX.SetActive(false);
+
+		}
+		public void Select()
+		{
+			selected = true;
+			rend.material.color = selectColor;
+			SelectionVFX.SetActive(true);
+		}
+
+		public void AnableSelectionView()
+		{
+			SelectionVFX.SetActive(true);
+		}
+
+		public void SetActive(bool anable)
+		{
+			active = anable;
+			gameObject.SetActive(active);
+		}
 	}
 }

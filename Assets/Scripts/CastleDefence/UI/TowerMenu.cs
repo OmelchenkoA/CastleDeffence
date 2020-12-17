@@ -1,29 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerMenu : MonoBehaviour
+namespace Assets.Scripts.CastleDefence.UI
 {
-    public GameObject upgradeCost;
-    public GameObject destroyCost;
-    public Button upgradeButton;
-
-	private Text upgradeText;
-	private Text destroyText;
-	private void Awake()
+	public class TowerMenu : MonoBehaviour
 	{
-		upgradeText = upgradeCost.GetComponent<Text>();
-		destroyText = destroyCost.GetComponent<Text>();
+		public GameObject upgradeCost;
+		public GameObject destroyCost;
+		public Button upgradeButton;
+
+		private Text upgradeText;
+		private Text destroyText;
+		private void Awake()
+		{
+			Init();
+		}
+
+		private void Init()
+		{
+			upgradeText = upgradeCost.GetComponent<Text>();
+			destroyText = destroyCost.GetComponent<Text>();
+		}
+		public void SetTowerCost(int upgradePrice, int destroyPrice)
+		{
+			if (upgradeText == null || destroyText == null)
+				Init();
+			upgradeText.text = upgradePrice == 0 ? $"Max lvl" : $"- {upgradePrice}";
+			upgradeButton.interactable = upgradePrice == 0 ? false : true;
+
+			destroyText.text = $"+ {destroyPrice}";
+		}
+
 	}
-
-
-	public void SetTowerCost(int upgradePrice, int destroyPrice)
-	{
-		upgradeText.text = upgradePrice == 0 ? $"Max lvl" : $"- {upgradePrice}";
-		upgradeButton.interactable = upgradePrice == 0 ? false : true;
-		
-		destroyText.text = $"+ {destroyPrice}";
-	}
-
 }

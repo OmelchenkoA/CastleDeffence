@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using Assets.Scripts.CastleDefence.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,25 +28,25 @@ namespace Assets.Scripts.Upgrades
 		{
 			foreach (UpgradeData upgradeData in upgradeDatas)
 			{
-				if (upgradeData==null || upgrades.Where(u => u.type.Equals(upgradeData.type)).Count() > 0)
+				if (upgradeData==null || upgrades.Where(u => u.type.Equals(upgradeData.Type)).Count() > 0)
 					continue;
 
 				Upgrade upgrade = new Upgrade();
-				upgrade.upgradeName = upgradeData.upgradeName;
-				upgrade.type = upgradeData.type;
+				upgrade.upgradeName = upgradeData.UpgradeName;
+				upgrade.type = upgradeData.Type;
 				upgrade.currentLevel = 0;
 				
 				upgrade.upgradeUiRow = GameObject.Instantiate(upgradePrefab, upgradesPanel.transform);
 				upgrade.upgradeField = upgrade.upgradeUiRow.GetComponent<UpgradeField>();
-				upgrade.upgradeField.upgradeLabel.text = upgradeData.upgradeName;
+				upgrade.upgradeField.upgradeLabel.text = upgradeData.UpgradeName;
 
 				upgrade.levels = new List<UpgradeLevel>();
-				for (int i = 0; i < upgradeData.levels.Length; i++)
+				for (int i = 0; i < upgradeData.Levels.Length; i++)
 				{
 					UpgradeLevel level = new UpgradeLevel();
 					level.levelPoint = GameObject.Instantiate(upgrade.upgradeField.levelPointPrefab, upgrade.upgradeField.levels.transform);
-					level.cost = upgradeData.levels[i].cost;
-					level.value = upgradeData.levels[i].value;
+					level.cost = upgradeData.Levels[i].cost;
+					level.value = upgradeData.Levels[i].value;
 					upgrade.levels.Add(level);
 				}
 				upgrade.upgradeField.upgradeButton.GetComponent<Button>().onClick.AddListener(() => { DoUpdrade(upgrade); });

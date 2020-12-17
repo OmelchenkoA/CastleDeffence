@@ -1,4 +1,5 @@
-﻿using CastleDefence.Nodes;
+﻿using Assets.Data.ScriptableObjects;
+using CastleDefence.Nodes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
 			Vector3 spawnPosition = node.GetRandomPointInNodeArea();	
 			Quaternion rot = Quaternion.Euler(0f, -90f, 0f);
 
-			GameObject prefabToSpawn = uData.prefab;
+			GameObject prefabToSpawn = uData.Prefab;
 			GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, rot);
 
 			Unit unit = newSpawnable.GetComponent<Unit>();

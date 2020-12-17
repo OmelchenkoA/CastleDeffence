@@ -1,14 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Upgrades
 {
 	[CreateAssetMenu(fileName = "NewUpgrade", menuName = "Configs/Upgrade Data")]
 	public class UpgradeData : ScriptableObject
 	{
-		public UpgradeType type;
-		public string upgradeName;
-		public UpgradeLevel[] levels;
+		[SerializeField] private UpgradeType type;
+		[SerializeField] private string upgradeName;
+		[SerializeField] private UpgradeLevel[] levels;
+
+		public UpgradeType Type => type;
+		public string UpgradeName => upgradeName;
+		public UpgradeLevel[] Levels => levels;
 	}
 }
