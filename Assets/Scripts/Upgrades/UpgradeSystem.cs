@@ -49,7 +49,8 @@ namespace Assets.Scripts.Upgrades
 					level.value = upgradeData.Levels[i].value;
 					upgrade.levels.Add(level);
 				}
-				upgrade.upgradeField.upgradeButton.GetComponent<Button>().onClick.AddListener(() => { DoUpdrade(upgrade); });
+				upgrade.upgradeField.buttonGroup.AddListenerToButton(() => { DoUpdrade(upgrade); });
+				upgrade.upgradeField.buttonGroup.Init(null, "", 0);
 				UpdateUpgradeLevelUI(upgrade);
 				upgrades.Add(upgrade);
 			}
@@ -82,14 +83,13 @@ namespace Assets.Scripts.Upgrades
 			
 			if (upgrade.currentLevel < upgrade.levels.Count)
 			{
-				upgrade.upgradeField.upgradeValue.GetComponent<Text>().text = $"{upgrade.levels[upgrade.currentLevel].value}";
-				upgrade.upgradeField.upgradeCost.GetComponent<Text>().text = $"{upgrade.levels[upgrade.currentLevel].cost}";
+				upgrade.upgradeField.buttonGroup.SetValue($"{upgrade.levels[upgrade.currentLevel].value}");
+				upgrade.upgradeField.buttonGroup.SetPrice(upgrade.levels[upgrade.currentLevel].cost);
 			}
 			else
 			{
-				upgrade.upgradeField.upgradeValue.GetComponent<Text>().text = $"Max";
-				upgrade.upgradeField.upgradeCost.GetComponent<Text>().text = $"";
-				upgrade.upgradeField.upgradeButton.GetComponent<Button>().interactable = false;
+				upgrade.upgradeField.buttonGroup.SetValue($"Max");
+				upgrade.upgradeField.buttonGroup.SetPrice(0);
 			}
 		}
 

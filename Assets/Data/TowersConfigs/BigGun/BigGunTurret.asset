@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c80131d8ef69fcf4dab44fb5226af496, type: 3}
+  m_Name: BigGunTurret
+  m_EditorClassIdentifier: 
+  towerName: BigGun
+  prefab: {fileID: 5007004546146143391, guid: 2868c0b62c136da46a733e114dad872c, type: 3}
+  towerLevels:
+  - {fileID: 11400000, guid: 3d9b1aaab83a7b0489f10ff1a0ec2c5c, type: 2}
+  - {fileID: 11400000, guid: 0b176e729f4888e4aad5d0a2ee01f00e, type: 2}
+  - {fileID: 11400000, guid: 10a4604789768f542a9611593438d4d4, type: 2}
+  faction: 0
+  attackType: 1
+  targetType: 1
+  id: 9d3afed4-d4df-4497-b57f-87465378b41a

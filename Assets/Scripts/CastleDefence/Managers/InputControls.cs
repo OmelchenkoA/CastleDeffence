@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/InputControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/CastleDefence/Managers/InputControls.inputactions'
 
 using System;
 using System.Collections;

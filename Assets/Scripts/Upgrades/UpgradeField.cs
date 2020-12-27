@@ -8,8 +8,6 @@ namespace Assets.Scripts.Upgrades
 		public Text upgradeLabel;
 		public GameObject levels;
 		public GameObject levelPointPrefab;
-		public GameObject upgradeButton;
-		public GameObject upgradeValue;
-		public GameObject upgradeCost;
+		public ButtonGroup buttonGroup;
 	}
 }

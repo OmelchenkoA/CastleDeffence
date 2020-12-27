@@ -5,28 +5,33 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 	public GameObject vfx_hit;
-	private Spawnable m_target;
+	private static GameObject ProjectilesHolder;
 	[HideInInspector] public float damage;
-	private float speed = 3f;
+	public float speed = 3f;
 	private float progress = 0f;
 	private float percentOfColliderArea = 0.1f;
-	private Vector3 offset = new Vector3(0f, 1f, 0f);
 	private Vector3 initialPosition;
 	private Vector3 pointOnTarget;
-	private Collider collider;
+	private Vector3 shootDirection;
+	private float maxFlyDistanse = 200;
 
 	private void Awake()
 	{
 		initialPosition = transform.position;
-		collider = GetComponent<Collider>();
+		if(ProjectilesHolder == null)
+		{
+			ProjectilesHolder = new GameObject("ProjectilesHolder");
+		}
+
+		gameObject.transform.SetParent(ProjectilesHolder.transform);
 	}
 
 	public void SetTarget(Spawnable target)
 	{
-		m_target = target;
 		Collider targetCollider;
 		bool collExist = target.transform.TryGetComponent<Collider>(out targetCollider);
 		pointOnTarget = collExist ? RandomPointInCollider(targetCollider) : target.transform.position;
+		shootDirection = (pointOnTarget - transform.position).normalized;
 	}
 
 	public float Move()
@@ -37,42 +42,32 @@ public class Projectile : MonoBehaviour
 		return progress;
 	}
 
+	public void MoveToDirection()
+	{
+		transform.position += Time.deltaTime * shootDirection * speed;
+	}
 
 	private void Update()
 	{
-		float progressToTarget;
+		MoveToDirection();
 
-		if (m_target == null)
-		{
+		if (Vector3.Distance(initialPosition, transform.position) > maxFlyDistanse)
 			Destroy(gameObject);
-		}
-		else
-		{
-			progressToTarget = Move();
-			if (progressToTarget >= 1f)
-			{
-				if (m_target.state != Spawnable.States.Dead) //target might be dead already as this projectile is flying
-				{
-					
-				}
-				DestroyProjectile();
-			}
-		}
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject == m_target.gameObject)
-			DestroyProjectile();
+		if (collision.gameObject.TryGetComponent<Spawnable>(out Spawnable shooted))
+			shooted.SufferDamage(damage);
+
+		DestroyProjectile();
 	}
 
 
 
 	private void DestroyProjectile()
 	{
-		//GameObject.Instantiate(vfx_hit);
-		float newHP = m_target.SufferDamage(damage);
-		GameObject.Instantiate(vfx_hit, transform.position, Quaternion.Inverse(transform.rotation));
+		GameObject.Instantiate(vfx_hit, transform.position, Quaternion.Inverse(transform.rotation), ProjectilesHolder.transform);
 		Destroy(gameObject);
 	}
 

@@ -35,6 +35,7 @@ namespace Assets.Scripts.CastleDefence.Managers
 		}
 
 		public bool IsEnoughMoneyFor(int value) => Coins >= value;
+		public bool IsEnoughMoneyFor(float value) => Coins >= (int)value;
 
 	}
 }

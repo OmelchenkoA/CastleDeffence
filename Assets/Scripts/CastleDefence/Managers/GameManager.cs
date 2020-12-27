@@ -65,8 +65,6 @@ namespace Assets.Scripts.CastleDefence.Managers
 			castles.Add(castle);
 
 			SetGameData(gameData);
-
-
 		}
 
 		private void OnCastleDie(Spawnable arg0)
@@ -87,7 +85,6 @@ namespace Assets.Scripts.CastleDefence.Managers
 			enemiesCurrentWave.Add(unit);
 			allSpawnable.Add(unit);
 			unit.OnDealDamage += OnPlaceableDealtDamage;
-
 		}
 
 
@@ -126,7 +123,10 @@ namespace Assets.Scripts.CastleDefence.Managers
 		{
 			GameData loadedGameData = SaveSystem.LoadGame();
 			if (loadedGameData != null)
+			{
+				DeleteTowers();
 				SetGameData(loadedGameData);
+			}
 		}
 		public GameData CollectGameData()
 		{
@@ -182,6 +182,11 @@ namespace Assets.Scripts.CastleDefence.Managers
 		{
 			castles.ForEach(c => ((Castle)c).Restore());
 			enemiesCurrentWave.ForEach(s => s.state = Spawnable.States.Dead);
+			UpdateSpawnables();
+		}
+		private void DeleteTowers()
+		{
+			towers.ForEach(s => s.state = Spawnable.States.Dead);
 			UpdateSpawnables();
 		}
 

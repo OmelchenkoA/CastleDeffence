@@ -4,6 +4,7 @@ using Assets.Scripts.CastleDefence.Managers;
 using Assets.Data.ScriptableObjects;
 using Assets.Scripts.CastleDefence.Placement;
 using Assets.Scripts.CastleDefence.Towers;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.CastleDefence.UI
 {
@@ -32,7 +33,7 @@ namespace Assets.Scripts.CastleDefence.UI
 		public GameObject MaxLevel;
 
 		[Header("Other")]
-		public Button newTowerButton;
+		public ButtonGroup newTowerButton;
 
 		public LayerMask towerSelectionLayer;
 		public PlacementTile selectedTile;
@@ -101,7 +102,7 @@ namespace Assets.Scripts.CastleDefence.UI
 					MainMenuPanel.SetActive(true);
 					GameOverPanel.SetActive(false);
 					GameplayPanel.SetActive(true);
-					LeftPanel.SetActive(true);
+					LeftPanel.SetActive(false);
 					break;
 				case UiStates.Pause:
 					break;
@@ -133,8 +134,9 @@ namespace Assets.Scripts.CastleDefence.UI
 
 		private void MouseClick_performed()
 		{
-			if (currentUiState == UiStates.Play)
+			if (currentUiState == UiStates.Play && !EventSystem.current.IsPointerOverGameObject())
 			{
+				
 				Vector2 mousePos = inputActions.UI.MousePosition.ReadValue<Vector2>();
 				RaycastHit output;
 				Ray ray = m_Camera.ScreenPointToRay(mousePos);
@@ -155,7 +157,9 @@ namespace Assets.Scripts.CastleDefence.UI
 				if (tile != null)
 				{
 					SelectTile(tile);
+					return;
 				}
+				ClearSelection();
 			}
 
 		}
@@ -164,9 +168,9 @@ namespace Assets.Scripts.CastleDefence.UI
 		{
 			foreach (TowerData towerData in BuildManager.instance.towerConfigurations)
 			{
-				Button button = Instantiate(newTowerButton, newTowerMenu.transform);
-				button.GetComponentInChildren<Text>().text = towerData.name;
-				button.onClick.AddListener(() => { BuildManager.instance.BuildTower(towerData); });
+				ButtonGroup buttonGroup = Instantiate(newTowerButton, newTowerMenu.transform);
+				buttonGroup.Init(null, towerData.TowerName, towerData.TowerLevels[0].UpgradeCost);
+				buttonGroup.AddListenerToButton(() => { BuildManager.instance.BuildTower(towerData); });
 			}
 		}
 
@@ -202,6 +206,7 @@ namespace Assets.Scripts.CastleDefence.UI
 		public void SelectTile(PlacementTile tile)
 		{
 			ClearSelection();
+			LeftPanel.SetActive(true);
 			newTowerMenu.SetActive(true);
 			selectedTile = tile;
 			selectedTile.Select();
@@ -210,6 +215,7 @@ namespace Assets.Scripts.CastleDefence.UI
 		public void SelectTower(Tower tower)
 		{
 			ClearSelection();
+			LeftPanel.SetActive(true);
 			tower.PlacementTile.AnableSelectionView();
 			currentSelectedTower = tower;
 			towerMenuGO.SetActive(true);
@@ -230,6 +236,8 @@ namespace Assets.Scripts.CastleDefence.UI
 				selectedTile.Deselect();
 				selectedTile = null;
 			}
+
+			LeftPanel.SetActive(false);
 		}
 
 		public void UpdateTowerMenu(int upgradePrice, int destroyPrice)

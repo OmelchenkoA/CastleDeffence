@@ -1,16 +1,14 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.CastleDefence.Managers;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.CastleDefence.UI
 {
 	public class TowerMenu : MonoBehaviour
 	{
-		public GameObject upgradeCost;
-		public GameObject destroyCost;
-		public Button upgradeButton;
+		public ButtonGroup upgradeButton;
+		public ButtonGroup destroyButton;
 
-		private Text upgradeText;
-		private Text destroyText;
 		private void Awake()
 		{
 			Init();
@@ -18,17 +16,17 @@ namespace Assets.Scripts.CastleDefence.UI
 
 		private void Init()
 		{
-			upgradeText = upgradeCost.GetComponent<Text>();
-			destroyText = destroyCost.GetComponent<Text>();
+			upgradeButton.Init(null, "", 0);
+			destroyButton.Init(null, "", 0);
+			destroyButton.type = ButtonGroup.ButtonType.Sell;
 		}
+
+
+
 		public void SetTowerCost(int upgradePrice, int destroyPrice)
 		{
-			if (upgradeText == null || destroyText == null)
-				Init();
-			upgradeText.text = upgradePrice == 0 ? $"Max lvl" : $"- {upgradePrice}";
-			upgradeButton.interactable = upgradePrice == 0 ? false : true;
-
-			destroyText.text = $"+ {destroyPrice}";
+			upgradeButton.SetPrice(upgradePrice);
+			destroyButton.SetPrice(destroyPrice);
 		}
 
 	}

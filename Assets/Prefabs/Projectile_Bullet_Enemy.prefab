@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vfx_hit: {fileID: 7424904452728100814, guid: 7dedc51d1b2e5324ba7391af44ef123c, type: 3}
   damage: 0
+  speed: 40.39
 --- !u!136 &1476397012124985577
 CapsuleCollider:
   m_ObjectHideFlags: 0

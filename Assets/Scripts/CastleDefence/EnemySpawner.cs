@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
 	private int m_currentWave;
 	private int m_maxWave;
 	private int m_enemiesInCurrentWave;
+	private static GameObject EnemiesHolder;
 
 	private Queue<int> fastWaves;
 
@@ -30,6 +31,12 @@ public class EnemySpawner : MonoBehaviour
 		fastWaves = new Queue<int>();
 		m_currentWave = currentLevel;
 		m_maxWave = maxLevel;
+		if (EnemiesHolder == null)
+		{
+			EnemiesHolder = new GameObject("EnemiesHolder");
+		}
+
+		
 	}
 	public void StartNextWave()
 	{
@@ -59,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
 			Quaternion rot = Quaternion.Euler(0f, -90f, 0f);
 
 			GameObject prefabToSpawn = uData.Prefab;
-			GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, rot);
+			GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, rot, EnemiesHolder.transform);
 
 			Unit unit = newSpawnable.GetComponent<Unit>();
 			unit.Init(uData);
