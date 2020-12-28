@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7007772621677699641}
   - component: {fileID: 4777683394835320658}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: BigGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +59,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1977158881363050, guid: f56f72239f92101428b130fa81a0bf13, type: 3}
   gun: {fileID: 0}
   projectileSpawnPoints: []
+  muzzleFlashVfx: {fileID: 7424904452728100814, guid: 77369f124c9e9e944bb4ae98c18fc381, type: 3}
   healthBar: {fileID: 0}
   towerData: {fileID: 0}
+  upgradeCost: 0
+  destroyCost: 0
   currentLevel: 0

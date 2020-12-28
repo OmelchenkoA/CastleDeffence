@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1629297655180707633}
   m_Layer: 0
   m_Name: MechUnit
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,14 +100,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221931050719284816}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 500
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &1629297655180707633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   gun: {fileID: 8514639327755065704}
   projectileSpawnPoints:
   - {fileID: 8949963301400309003}
+  muzzleFlashVfx: {fileID: 7424904452728100814, guid: 77369f124c9e9e944bb4ae98c18fc381, type: 3}
   healthBar: {fileID: 8877073823245834492}
 --- !u!1 &1011027436171797495
 GameObject:

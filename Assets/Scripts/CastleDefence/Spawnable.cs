@@ -27,6 +27,7 @@ public class Spawnable : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject gun;
     public Transform [] projectileSpawnPoints;
+    public GameObject muzzleFlashVfx;
 
     public HealthBar healthBar;
     private int _nextGunToShoot = 0;
@@ -91,9 +92,11 @@ public class Spawnable : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(adjTargetPos - projectileSpawnPoints[_nextGunToShoot].position);
 
         Projectile prj = Instantiate<GameObject>(projectilePrefab, projectileSpawnPoints[_nextGunToShoot].position, rot).GetComponent<Projectile>();
+        Instantiate<GameObject>(muzzleFlashVfx, projectileSpawnPoints[_nextGunToShoot].position, rot);
         prj.SetTarget(target);
         prj.damage = damage;
         _nextGunToShoot = (_nextGunToShoot + 1) % projectileSpawnPoints.Length;
+
 
         OnProjectileFired?.Invoke(this);
 	}
@@ -136,8 +139,6 @@ public class Spawnable : MonoBehaviour
     protected virtual void Die()
     {
         state = States.Dead;
-        //audioSource.pitch = Random.Range(.9f, 1.1f);
-        //audioSource.PlayOneShot(dieAudioClip, 1f);
         if(target != null)
             target.OnDie -= TargetIsDead;
         OnDie?.Invoke(this);

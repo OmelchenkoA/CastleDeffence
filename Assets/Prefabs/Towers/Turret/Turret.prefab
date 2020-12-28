@@ -59,6 +59,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1977158881363050, guid: 83f59ec74262c5b4abedd141a4092814, type: 3}
   gun: {fileID: 0}
   projectileSpawnPoints: []
+  muzzleFlashVfx: {fileID: 7424904452728100814, guid: 77369f124c9e9e944bb4ae98c18fc381, type: 3}
   healthBar: {fileID: 0}
   towerData: {fileID: 0}
   upgradeCost: 0

@@ -46,8 +46,7 @@ public class Projectile : MonoBehaviour
 	{
 		transform.position += Time.deltaTime * shootDirection * speed;
 	}
-
-	private void Update()
+	private void FixedUpdate()
 	{
 		MoveToDirection();
 
@@ -55,11 +54,22 @@ public class Projectile : MonoBehaviour
 			Destroy(gameObject);
 	}
 
+
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.TryGetComponent<Spawnable>(out Spawnable shooted))
-			shooted.SufferDamage(damage);
-
+		switch (collision.gameObject.tag)
+		{
+			case "Projectile":
+				return;
+			case "Enemy":
+				if (collision.gameObject.TryGetComponent<Spawnable>(out Spawnable shooted))
+					shooted.SufferDamage(damage);
+				break;
+			case "Environment":
+				break;
+			default:
+				return;
+		}
 		DestroyProjectile();
 	}
 
