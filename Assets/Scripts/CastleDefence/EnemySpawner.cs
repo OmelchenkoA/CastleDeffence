@@ -58,28 +58,31 @@ public class EnemySpawner : MonoBehaviour
 
 		StartWave(m_currentWave);
 	}
-	private void SpawnUnit(Node node)
+	private void SpawnUnit(Node node, UnitData uData)
 	{
-		foreach (UnitData uData in unitsToSpawn)
-		{
-			Vector3 spawnPosition = node.GetRandomPointInNodeArea();	
-			Quaternion rot = Quaternion.Euler(0f, -90f, 0f);
 
-			GameObject prefabToSpawn = uData.Prefab;
-			GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, rot, EnemiesHolder.transform);
+		Vector3 spawnPosition = node.GetRandomPointInNodeArea();	
+		Quaternion rot = Quaternion.Euler(0f, -90f, 0f);
 
-			Unit unit = newSpawnable.GetComponent<Unit>();
-			unit.Init(uData);
+		GameObject prefabToSpawn = uData.Prefab;
+		GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, rot, EnemiesHolder.transform);
 
-			OnUnitSpawned?.Invoke(unit);
-		}
+		Unit unit = newSpawnable.GetComponent<Unit>();
+		unit.Init(uData);
+
+		OnUnitSpawned?.Invoke(unit);
+		
 	}
 
 	IEnumerator SpawnWave(int waveNumber)
 	{
-		for (int i = 0; i < enemiesInWave * waveNumber; i++)
+
+		for (int i = 0; i < Mathf.Clamp(enemiesInWave * waveNumber, 0, 10); i++)
 		{
-			SpawnUnit(nodeToSpawnIn);
+			if(waveNumber >= 10 && i < 10 - waveNumber % 10)
+				SpawnUnit(nodeToSpawnIn, unitsToSpawn[(waveNumber/10 - 1) % unitsToSpawn.Count]);
+			else
+				SpawnUnit(nodeToSpawnIn, unitsToSpawn[(waveNumber / 10) % unitsToSpawn.Count]);
 			yield return new WaitForSeconds(0.4f);
 		}
 	}

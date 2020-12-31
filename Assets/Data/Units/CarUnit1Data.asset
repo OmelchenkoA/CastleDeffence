@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f7fa4e992f7fab40a111bbdff31dd87, type: 3}
-  m_Name: MechUnitData
+  m_Name: CarUnit1Data
   m_EditorClassIdentifier: 
-  prefab: {fileID: 221931050719284816, guid: 42416ff42e136ae49ac065530b13dfa0, type: 3}
+  prefab: {fileID: 8631322586147698663, guid: c1b74b33f38145047986abefaf0f1af1, type: 3}
   faction: 1
   attackType: 1
   targetType: 0
   attackRatio: 1
-  damagePerAttack: 15
-  attackRange: 21
-  hitPoints: 30
-  speed: 5
-  dropCoins: 30
+  damagePerAttack: 3
+  attackRange: 12
+  hitPoints: 15
+  speed: 7
+  dropCoins: 10

@@ -61,7 +61,7 @@ public class Projectile : MonoBehaviour
 		{
 			case "Projectile":
 				return;
-			case "Enemy":
+			case "Spawnable":
 				if (collision.gameObject.TryGetComponent<Spawnable>(out Spawnable shooted))
 					shooted.SufferDamage(damage);
 				break;
