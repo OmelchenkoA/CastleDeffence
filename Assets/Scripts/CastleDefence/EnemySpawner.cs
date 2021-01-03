@@ -15,11 +15,11 @@ public class EnemySpawner : MonoBehaviour
 	public UnityAction<Spawnable> OnUnitSpawned;
 
 	public int waveNumber;
-	public int enemiesInWave;
 	private int m_currentWave;
 	private int m_maxWave;
 	private int m_enemiesInCurrentWave;
 	private static GameObject EnemiesHolder;
+	private int maxEnemiesInWave = 10;
 
 	private Queue<int> fastWaves;
 
@@ -58,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
 
 		StartWave(m_currentWave);
 	}
-	private void SpawnUnit(Node node, UnitData uData)
+	private void SpawnUnit(Node node, UnitData uData, int unitLevel)
 	{
 
 		Vector3 spawnPosition = node.GetRandomPointInNodeArea();	
@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
 		GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, rot, EnemiesHolder.transform);
 
 		Unit unit = newSpawnable.GetComponent<Unit>();
-		unit.Init(uData);
+		unit.Init(uData, unitLevel);
 
 		OnUnitSpawned?.Invoke(unit);
 		
@@ -76,13 +76,18 @@ public class EnemySpawner : MonoBehaviour
 
 	IEnumerator SpawnWave(int waveNumber)
 	{
+		int unitLevel = (waveNumber / maxEnemiesInWave) / unitsToSpawn.Count + 1;
 
-		for (int i = 0; i < Mathf.Clamp(enemiesInWave * waveNumber, 0, 10); i++)
+		for (int i = 0; i < Mathf.Clamp(waveNumber, 0, maxEnemiesInWave); i++)
 		{
-			if(waveNumber >= 10 && i < 10 - waveNumber % 10)
-				SpawnUnit(nodeToSpawnIn, unitsToSpawn[(waveNumber/10 - 1) % unitsToSpawn.Count]);
+			if(waveNumber >= 10 && i < maxEnemiesInWave - waveNumber % maxEnemiesInWave)
+			{
+				var curUnitNum = (waveNumber / maxEnemiesInWave - 1) % unitsToSpawn.Count;
+				var curUnitLevel = unitLevel > 1 && curUnitNum == unitsToSpawn.Count - 1 ? unitLevel - 1: unitLevel;
+				SpawnUnit(nodeToSpawnIn, unitsToSpawn[curUnitNum], curUnitLevel);
+			}
 			else
-				SpawnUnit(nodeToSpawnIn, unitsToSpawn[(waveNumber / 10) % unitsToSpawn.Count]);
+				SpawnUnit(nodeToSpawnIn, unitsToSpawn[(waveNumber / maxEnemiesInWave) % unitsToSpawn.Count], unitLevel);
 			yield return new WaitForSeconds(0.4f);
 		}
 	}

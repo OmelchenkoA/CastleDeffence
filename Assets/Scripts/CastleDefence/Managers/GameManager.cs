@@ -109,7 +109,7 @@ namespace Assets.Scripts.CastleDefence.Managers
 		public void StartGame()
 		{
 			gameState = GameStates.Play;
-			//enemySpawner.CurrentWave = 0;
+			enemySpawner.CurrentWave = 0;
 			enemySpawner.StartNextWave();
 			OnLevelStarted?.Invoke(enemySpawner.CurrentWave, enemySpawner.MaxWave);
 			OnGameStarted?.Invoke();

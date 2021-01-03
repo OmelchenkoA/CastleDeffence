@@ -11,6 +11,8 @@ public class Unit : Spawnable
     private float speed;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    private int unitLevel;
+    private LevelBar levelBar;
 
     private float dropCoins;
 
@@ -21,28 +23,33 @@ public class Unit : Spawnable
         //find references to components
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>(); //will be disabled until Activate is called
+        levelBar = GetComponentInChildren<LevelBar>();
     }
 
 
 
-    public void Init(UnitData uData)
+    public void Init(UnitData uData, int level)
     {
+        unitLevel = level;
 		state = States.Idle;
 
         faction = uData.Faction;
-        health = uData.HitPoints;
-        maxHealth = uData.HitPoints;
+        health = uData.HitPoints * level;
+        maxHealth = uData.HitPoints * level;
         targetType = uData.TargetType;
         attackRange = uData.AttackRange;
         attackRatio = uData.AttackRatio;
         speed = uData.Speed;
-        damage = uData.DamagePerAttack;
+        damage = uData.DamagePerAttack * level;
 
-        dropCoins = uData.DropCoins;
+        dropCoins = uData.DropCoins * level;
 
         navMeshAgent.speed = speed;
         navMeshAgent.enabled = true;
 	    animator?.SetFloat("MoveSpeed", speed);
+
+        if (levelBar != null)
+            levelBar.SetLevel(level);
 
     }
     public override void Seek()

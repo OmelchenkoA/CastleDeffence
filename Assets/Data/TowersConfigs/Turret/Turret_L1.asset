@@ -17,6 +17,5 @@ MonoBehaviour:
   damagePerAttack: 2
   attackRange: 25
   hitPoints: 10
-  speed: 5
   upgradeCost: 20
   destroyCost: 10
