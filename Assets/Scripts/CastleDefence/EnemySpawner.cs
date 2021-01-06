@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
 	private int m_maxWave;
 	private int m_enemiesInCurrentWave;
 	private static GameObject EnemiesHolder;
+	private Dictionary<UnitData, Pool> enemyPools;
 	private int maxEnemiesInWave = 10;
 
 	private Queue<int> fastWaves;
@@ -36,6 +37,13 @@ public class EnemySpawner : MonoBehaviour
 			EnemiesHolder = new GameObject("EnemiesHolder");
 		}
 
+		//Init pools
+		enemyPools = new Dictionary<UnitData, Pool>();
+		foreach (UnitData unitData in unitsToSpawn)
+		{
+			Pool pool = new Pool(unitData.Prefab, maxEnemiesInWave, true, EnemiesHolder.transform);
+			enemyPools.Add(unitData, pool);
+		}
 		
 	}
 	public void StartNextWave()
@@ -62,12 +70,16 @@ public class EnemySpawner : MonoBehaviour
 	{
 
 		Vector3 spawnPosition = node.GetRandomPointInNodeArea();	
-		Quaternion rot = Quaternion.Euler(0f, -90f, 0f);
+		Quaternion spawnRotation = Quaternion.Euler(0f, -90f, 0f);
 
 		GameObject prefabToSpawn = uData.Prefab;
-		GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, rot, EnemiesHolder.transform);
+		//GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, spawnRotation, EnemiesHolder.transform);
+		GameObject newEnemy = enemyPools[uData].GetObject();
+		newEnemy.transform.position = spawnPosition;
+		newEnemy.transform.rotation = spawnRotation;
 
-		Unit unit = newSpawnable.GetComponent<Unit>();
+
+		Unit unit = newEnemy.GetComponent<Unit>();
 		unit.Init(uData, unitLevel);
 
 		OnUnitSpawned?.Invoke(unit);
