@@ -70,7 +70,7 @@ namespace Assets.Scripts.CastleDefence.UI
 			GameManager.instance.OnGameStarted += OnGameStarted;
 			GameManager.instance.OnGoToMainMenu += OnGoToMainMenu;
 			GameManager.instance.OnGameOver += OnGameOver;
-			GameManager.instance.OnLevelStarted += OnLevelStarted;
+			GameManager.instance.enemySpawner.OnWaveStarted += OnWaveStarted;
 
 			inputActions = new InputControls();
 			inputActions.UI.MouseClick.performed += _ => MouseClick_performed();
@@ -178,7 +178,7 @@ namespace Assets.Scripts.CastleDefence.UI
 		{
 			coinsText.text = "Coins: " + currentCoins;
 		}
-		private void OnLevelStarted(int level, int maxLevel)
+		private void OnWaveStarted(int level, int maxLevel)
 		{
 			levelText.text = $"Level: {level}   Max Level: {maxLevel}";
 		}
@@ -243,6 +243,16 @@ namespace Assets.Scripts.CastleDefence.UI
 		public void UpdateTowerMenu(int upgradePrice, int destroyPrice)
 		{
 			towerMenu.SetTowerCost(upgradePrice, destroyPrice);
+		}
+
+		private void OnDestroy()
+		{
+			CurrencyManager.instance.OnCurrencyChanged -= UI_OnCurrencyChanged;
+			GameManager.instance.OnGameStarted -= OnGameStarted;
+			GameManager.instance.OnGoToMainMenu -= OnGoToMainMenu;
+			GameManager.instance.OnGameOver -= OnGameOver;
+			GameManager.instance.enemySpawner.OnWaveStarted -= OnWaveStarted;
+
 		}
 	}
 }

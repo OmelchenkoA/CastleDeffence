@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 665374633}
-  m_PathPosition: 5
+  m_PathPosition: 2.278632
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -620,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 6549081044819974252, guid: 5ccde45ff8dc8464da844d05ddc6126f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2109103039525355056}
+      objectReference: {fileID: 1194115915}
     - target: {fileID: 6549081044819974252, guid: 5ccde45ff8dc8464da844d05ddc6126f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpgradeTower
@@ -5334,7 +5334,7 @@ PrefabInstance:
     - target: {fileID: 6549081044819974252, guid: 5ccde45ff8dc8464da844d05ddc6126f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2109103039525355056}
+      objectReference: {fileID: 1194115915}
     - target: {fileID: 6549081044819974252, guid: 5ccde45ff8dc8464da844d05ddc6126f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DestroyTower
@@ -11082,6 +11082,8 @@ GameObject:
   - component: {fileID: 1194115912}
   - component: {fileID: 1194115913}
   - component: {fileID: 1194115914}
+  - component: {fileID: 1194115916}
+  - component: {fileID: 1194115915}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11127,9 +11129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7afb323a34a2141bae9e2407781bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castle: {fileID: 1501038041}
   enemySpawner: {fileID: 1606444365}
-  buildManager: {fileID: 2109103039525355056}
+  buildManager: {fileID: 1194115915}
+  battleSystem: {fileID: 1194115916}
   placementTilesHolder: {fileID: 35403620}
   upgradeSystem: {fileID: 1194115913}
   gameData:
@@ -11140,10 +11142,6 @@ MonoBehaviour:
     coins: 200
     upgradeSaveDatas: []
     towerSaveDatas: []
-  enemiesCurrentWave: []
-  towers: []
-  castles: []
-  allSpawnable: []
 --- !u!114 &1194115913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11180,6 +11178,41 @@ MonoBehaviour:
     speed: 1.5
   - speedButton: {fileID: 1470296071}
     speed: 2
+--- !u!114 &1194115915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194115909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7cb77eebcb869c45a647b529de37eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerConfigurations:
+  - {fileID: 11400000, guid: ac49ec31800f4134fbf893d2133d566f, type: 2}
+  - {fileID: 11400000, guid: e23d926e359cc744fac6c8334bdce609, type: 2}
+  placementTilesholder: {fileID: 35403620}
+--- !u!114 &1194115916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194115909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79412dc009f470b458e63376eb1fd5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castle: {fileID: 1501038041}
+  enemiesCurrentWave: []
+  towers: []
+  castles: []
+  allSpawnable: []
+  buildManager: {fileID: 1194115915}
+  enemySpawner: {fileID: 1606444365}
 --- !u!1001 &1194607511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15410,7 +15443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: 0.3066711, y: -0.06902756, z: 0.022305274, w: 0.94904715}
-  m_LocalPosition: {x: 41.652397, y: 50.7, z: -46.9}
+  m_LocalPosition: {x: 20.513063, y: 50.910767, z: -46.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1101115359}
@@ -15463,7 +15496,7 @@ MonoBehaviour:
   buildCamera: {fileID: 406823458}
   myBrain: {fileID: 1687258589}
   moveSpeed: 5
-  pathPosition: 5
+  pathPosition: 2.278632
 --- !u!114 &1687258589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20718,7 +20751,6 @@ GameObject:
   - component: {fileID: 2109103039525355042}
   - component: {fileID: 2109103039525355043}
   - component: {fileID: 2109103039525355057}
-  - component: {fileID: 2109103039525355056}
   - component: {fileID: 2109103039525355040}
   - component: {fileID: 2109103039525355041}
   m_Layer: 5
@@ -20728,22 +20760,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2109103039525355056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109103039525355055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7cb77eebcb869c45a647b529de37eed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerConfigurations:
-  - {fileID: 11400000, guid: ac49ec31800f4134fbf893d2133d566f, type: 2}
-  - {fileID: 11400000, guid: e23d926e359cc744fac6c8334bdce609, type: 2}
-  placementTilesholder: {fileID: 35403620}
 --- !u!114 &2109103039525355057
 MonoBehaviour:
   m_ObjectHideFlags: 0

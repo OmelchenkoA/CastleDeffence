@@ -7,13 +7,13 @@ using UnityEngine.Events;
 public class Spawnable : MonoBehaviour
 {
     public Type type;
-    [HideInInspector] public States state = States.Idle;
+    public States state = States.Idle;
     [HideInInspector] public AttackType attackType;
     [HideInInspector] public TargetType targetType;
     [HideInInspector] public Faction faction;
 
 
-    [HideInInspector] public Spawnable target;
+     public Spawnable target;
     [HideInInspector] public float health;
     [HideInInspector] public float maxHealth;
     [HideInInspector] public float attackRange;
@@ -28,10 +28,11 @@ public class Spawnable : MonoBehaviour
     public GameObject gun;
     public Transform [] projectileSpawnPoints;
     public GameObject muzzleFlashVfx;
+    public string Id { get => id; protected set => id = value; }
 
     public HealthBar healthBar;
     private int _nextGunToShoot = 0;
-
+    private string id;
     public UnityAction<Spawnable> OnDie, OnDealDamage, OnProjectileFired;
 
     public enum Type
@@ -106,10 +107,11 @@ public class Spawnable : MonoBehaviour
     }
     protected void TargetIsDead(Spawnable p)
     {
-        //Debug.Log("My target " + p.name + " is dead", gameObject);
+        Debug.Log("My target " + p.name + " is dead", gameObject);
         state = States.Idle;
 
         target.OnDie -= TargetIsDead;
+        target = null;
 
         timeToActNext = lastBlowTime + attackRatio;
     }

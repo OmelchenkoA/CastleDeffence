@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class Unit : Spawnable
 {
@@ -16,7 +17,7 @@ public class Unit : Spawnable
 
     private float dropCoins;
 
-    private void Awake()
+	private void Awake()
     {
         type = Spawnable.Type.Unit;
 
@@ -33,6 +34,7 @@ public class Unit : Spawnable
         unitLevel = level;
 		state = States.Idle;
 
+        Id = uData.Id;
         faction = uData.Faction;
         health = uData.HitPoints * level;
         maxHealth = uData.HitPoints * level;
@@ -51,6 +53,7 @@ public class Unit : Spawnable
         if (levelBar != null)
             levelBar.SetLevel(level);
 
+        healthBar.UpdateHealth(health, maxHealth);
     }
     public override void Seek()
     {

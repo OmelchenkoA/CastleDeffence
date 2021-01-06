@@ -16,6 +16,7 @@ namespace Assets.Data.ScriptableObjects
 		[SerializeField] private float hitPoints = 10f;
 		[SerializeField] private float speed = 5f;
 		[SerializeField] private float dropCoins = 5f;
+		[ScriptableObjectId] [SerializeField] private string id;
 
 		public GameObject Prefab => prefab;
 		public Spawnable.Faction Faction => faction;
@@ -27,5 +28,7 @@ namespace Assets.Data.ScriptableObjects
 		public float HitPoints => hitPoints;
 		public float Speed => speed;
 		public float DropCoins => dropCoins;
+		public string Id => id;
+
 	}
 }

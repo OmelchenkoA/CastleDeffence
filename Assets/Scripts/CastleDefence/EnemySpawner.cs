@@ -13,13 +13,14 @@ public class EnemySpawner : MonoBehaviour
     public Node nodeToSpawnIn;
 
 	public UnityAction<Spawnable> OnUnitSpawned;
+	public event Action<int, int> OnWaveStarted;
 
 	public int waveNumber;
 	private int m_currentWave;
 	private int m_maxWave;
 	private int m_enemiesInCurrentWave;
 	private static GameObject EnemiesHolder;
-	private Dictionary<UnitData, Pool> enemyPools;
+	private Dictionary<string, Pool> enemyPools;
 	private int maxEnemiesInWave = 10;
 
 	private Queue<int> fastWaves;
@@ -38,11 +39,11 @@ public class EnemySpawner : MonoBehaviour
 		}
 
 		//Init pools
-		enemyPools = new Dictionary<UnitData, Pool>();
+		enemyPools = new Dictionary<string, Pool>();
 		foreach (UnitData unitData in unitsToSpawn)
 		{
 			Pool pool = new Pool(unitData.Prefab, maxEnemiesInWave, true, EnemiesHolder.transform);
-			enemyPools.Add(unitData, pool);
+			enemyPools.Add(unitData.Id, pool);
 		}
 		
 	}
@@ -73,8 +74,7 @@ public class EnemySpawner : MonoBehaviour
 		Quaternion spawnRotation = Quaternion.Euler(0f, -90f, 0f);
 
 		GameObject prefabToSpawn = uData.Prefab;
-		//GameObject newSpawnable = Instantiate<GameObject>(prefabToSpawn, spawnPosition, spawnRotation, EnemiesHolder.transform);
-		GameObject newEnemy = enemyPools[uData].GetObject();
+		GameObject newEnemy = enemyPools[uData.Id].GetObject();
 		newEnemy.transform.position = spawnPosition;
 		newEnemy.transform.rotation = spawnRotation;
 
@@ -82,8 +82,16 @@ public class EnemySpawner : MonoBehaviour
 		Unit unit = newEnemy.GetComponent<Unit>();
 		unit.Init(uData, unitLevel);
 
+		unit.OnDie += onUnitDie;
+
 		OnUnitSpawned?.Invoke(unit);
 		
+	}
+
+	private void onUnitDie(Spawnable unit)
+	{
+		enemyPools[unit.Id].ReturnObject(unit.gameObject);
+		unit.OnDie -= onUnitDie;
 	}
 
 	IEnumerator SpawnWave(int waveNumber)
@@ -107,6 +115,7 @@ public class EnemySpawner : MonoBehaviour
 	public void StartWave(int waveNumber)
 	{
 		StartCoroutine(SpawnWave(waveNumber));
+		OnWaveStarted?.Invoke(CurrentWave, MaxWave);
 	}
 
 

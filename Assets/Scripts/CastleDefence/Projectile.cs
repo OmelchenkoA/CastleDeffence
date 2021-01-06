@@ -15,6 +15,8 @@ public class Projectile : MonoBehaviour
 	private Vector3 shootDirection;
 	private float maxFlyDistanse = 200;
 
+	private float launchForce = 20;
+
 	private void Awake()
 	{
 		initialPosition = transform.position;

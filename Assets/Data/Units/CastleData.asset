@@ -21,3 +21,5 @@ MonoBehaviour:
   attackRange: 0
   hitPoints: 500
   speed: 0
+  dropCoins: 5
+  id: 80ab0853-f6b8-456c-b311-edadeaacbb9e
